@@ -1,4 +1,4 @@
-# @genesis/renderer
+# @genesis/render
 
 > JSON-to-UI rendering engine for declarative page definitions.
 
@@ -9,7 +9,7 @@ Define pages as JSON schemas, render them as React components. Built for Genesis
 ## Package
 
 ```
-npm: @genesis/renderer
+npm: @genesis/render
 registry: private (Verdaccio)
 peer: @olwiba/ui
 ```
@@ -18,7 +18,7 @@ peer: @olwiba/ui
 
 ```bash
 # Configure Verdaccio in bunfig.toml first
-bun add @genesis/renderer @olwiba/ui @olwiba/cn
+bun add @genesis/render @olwiba/ui @olwiba/cn
 ```
 
 ## Components
@@ -38,7 +38,7 @@ bun add @genesis/renderer @olwiba/ui @olwiba/cn
 ## Usage
 
 ```tsx
-import { GenesisPage } from "@genesis/renderer";
+import { GenesisPage } from "@genesis/render";
 
 const pageSchema = {
   title: "Dashboard",

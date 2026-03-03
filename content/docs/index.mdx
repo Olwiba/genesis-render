@@ -1,0 +1,50 @@
+---
+title: Getting Started
+description: JSON-to-UI mapping engine for @olwiba/ui components
+---
+
+## What is @genesis/render?
+
+A lightweight mapping layer that takes a JSON block spec and renders it using `@olwiba/ui` components. Designed to enable AI-generated pages in Genesis projects.
+
+## Installation
+
+```bash
+bun add @genesis/render
+```
+
+## Basic Usage
+
+```tsx
+import { GenesisPage } from '@genesis/render';
+import spec from './spec.json';
+
+function MyPage() {
+  return (
+    <GenesisPage
+      spec={spec}
+      onAction={(name, params) => console.log(name, params)}
+    />
+  );
+}
+```
+
+## Spec Format
+
+```json
+{
+  "type": "Stack",
+  "props": { "direction": "vertical", "gap": "md" },
+  "children": [
+    {
+      "type": "Heading",
+      "props": { "text": "Hello", "level": "h1" }
+    },
+    {
+      "type": "Button",
+      "props": { "label": "Get started" },
+      "on": { "press": { "navigate": "/dashboard" } }
+    }
+  ]
+}
+```

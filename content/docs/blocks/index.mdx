@@ -1,0 +1,23 @@
+---
+title: Blocks
+description: Supported block types and their props
+---
+
+Blocks are the building blocks of a page spec. Each block maps to an `@olwiba/ui` component.
+
+As `@olwiba/ui` grows, new blocks are registered here. Each block entry below documents its `type` name, available props, and events.
+
+## Using a Block
+
+```json
+{
+  "type": "BlockName",
+  "props": { ... },
+  "children": [...],
+  "on": { "eventName": { "handler": "myAction" } }
+}
+```
+
+## Registered Blocks
+
+The default registry is currently being built alongside `@olwiba/ui`. Check back as new blocks are added.

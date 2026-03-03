@@ -1,3 +1,3 @@
 [install.scopes]
-"@olwiba" = { url = "https://npm.olwiba.com/", token = '//npm.olwiba.com/:_authToken="NTFlNmYyZjMwYWI0ZmVlMjEzMDVhNjQ2NzZmODFiOGM6N2IzMjg0ZTI2ZDAyODQ3M2MzMjllOGNiMjBjOWVkOGZiYWZmZmM4ZWY5NjdiZjhlYWYyMjk5M2QyZWZmMjMyYmNhYTMwYjczNTJhNDZmZTkxYTMxMWM="' }
-"@genesis" = { url = "https://npm.olwiba.com/", token = '//npm.olwiba.com/:_authToken="NTFlNmYyZjMwYWI0ZmVlMjEzMDVhNjQ2NzZmODFiOGM6N2IzMjg0ZTI2ZDAyODQ3M2MzMjllOGNiMjBjOWVkOGZiYWZmZmM4ZWY5NjdiZjhlYWYyMjk5M2QyZWZmMjMyYmNhYTMwYjczNTJhNDZmZTkxYTMxMWM="' }
+"@olwiba" = { url = "https://npm.olwiba.com/", token = 'NTFlNmYyZjMwYWI0ZmVlMjEzMDVhNjQ2NzZmODFiOGM6N2IzMjg0ZTI2ZDAyODQ3M2MzMjllOGNiMjBjOWVkOGZiYWZmZmM4ZWY5NjdiZjhlYWYyMjk5M2QyZWZmMjMyYmNhYTMwYjczNTJhNDZmZTkxYTMxMWM="' }
+"@genesis" = { url = "https://npm.olwiba.com/", token = 'NTFlNmYyZjMwYWI0ZmVlMjEzMDVhNjQ2NzZmODFiOGM6N2IzMjg0ZTI2ZDAyODQ3M2MzMjllOGNiMjBjOWVkOGZiYWZmZmM4ZWY5NjdiZjhlYWYyMjk5M2QyZWZmMjMyYmNhYTMwYjczNTJhNDZmZTkxYTMxMWM="' }
