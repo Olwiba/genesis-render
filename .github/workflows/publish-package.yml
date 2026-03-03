@@ -27,6 +27,11 @@ jobs:
       - name: Configure GitHub Packages auth
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.PACKAGES_TOKEN }}" >> .npmrc
 
+      - name: Configure bun scopes
+        run: |
+          echo '[install.scopes]' > bunfig.toml
+          echo '"@olwiba" = { url = "https://npm.pkg.github.com/", token = "${{ secrets.PACKAGES_TOKEN }}" }' >> bunfig.toml
+
       - name: Install
         run: bun install --frozen-lockfile
 
