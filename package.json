@@ -4,7 +4,7 @@
   "private": false,
   "type": "module",
   "sideEffects": false,
-  "description": "JSON-to-UI mapping engine for @olwiba/ui components",
+  "description": "olwibaUI adapter layer for @json-render — JSON-to-UI rendering for Genesis projects",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -29,25 +29,21 @@
     "types:check": "fumadocs-mdx && tsc --noEmit"
   },
   "dependencies": {
-    "@olwiba/docs": "^0.1.5",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.4.0"
+    "@json-render/core": "^0.16.0",
+    "@json-render/react": "^0.16.0"
   },
   "peerDependencies": {
     "@olwiba/cn": ">=0.1.2",
     "@olwiba/ui": ">=0.0.3",
-    "@tanstack/react-router": ">=1.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
     "zod": ">=3.0.0"
   },
   "devDependencies": {
     "@olwiba/cn": "^0.1.2",
+    "@olwiba/docs": "^0.1.5",
     "@olwiba/ui": "^0.0.3",
     "@tailwindcss/vite": "^4.1.18",
-    "@tanstack/react-router": "^1.151.6",
-    "@tanstack/react-router-devtools": "^1.151.6",
-    "@tanstack/react-start": "^1.153.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/mdx": "^2.0.13",

@@ -1,16 +1,9 @@
-// @genesis/render
-// JSON-to-UI mapping engine for @olwiba/ui components
+export { GenesisPage } from './genesis-page';
+export type { GenesisPageProps } from './genesis-page';
 
-export { GenesisPage } from './renderer';
-export { defaultRegistry } from './registry';
-export { nestedToFlat, isFlat } from './utils';
+export { catalog, olwibaComponentDefinitions } from './catalog';
+export { registry, olwibaComponents } from './registry';
 
-export type {
-  Block,
-  BlockSpec,
-  NestedBlock,
-  BlockRegistry,
-  BlockRenderProps,
-  EventHandler,
-  ActionHandler,
-} from './types';
+export { defineCatalog } from '@json-render/core';
+export { defineRegistry, Renderer, StateProvider, ActionProvider, VisibilityProvider } from '@json-render/react';
+export { schema } from '@json-render/react/schema';

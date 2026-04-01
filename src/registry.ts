@@ -1,14 +1,46 @@
-import type { BlockRegistry } from './types';
+import { defineRegistry } from '@json-render/react';
+import {
+  PageHeader,
+  Spinner,
+  GlassCard,
+  FeatureCard,
+  StatCard,
+  TestimonialCard,
+  PricingCard,
+  ImageCard,
+  EmptyState,
+  Kbd,
+  GradientBackground,
+  GridPattern,
+  NoiseOverlay,
+  GlowEffect,
+  CountUp,
+  FadeIn,
+} from '@olwiba/ui';
+import { catalog } from './catalog';
 
-// ---------------------------------------------------------------------------
-// Default registry
-// Maps block type names to @olwiba/ui component adapters.
-// Grows alongside @olwiba/ui — add one entry per new block.
-// ---------------------------------------------------------------------------
+export const olwibaComponents = {
+  PageHeader: ({ props, children }) => <PageHeader {...props}>{children}</PageHeader>,
+  Spinner: ({ props }) => <Spinner {...props} />,
+  GlassCard: ({ props, children }) => <GlassCard {...props}>{children}</GlassCard>,
+  FeatureCard: ({ props }) => <FeatureCard {...props} />,
+  StatCard: ({ props }) => <StatCard {...props} />,
+  TestimonialCard: ({ props }) => <TestimonialCard {...props} />,
+  PricingCard: ({ props }) => <PricingCard {...props} />,
+  ImageCard: ({ props, children }) => <ImageCard {...props}>{children}</ImageCard>,
+  EmptyState: ({ props }) => <EmptyState {...props} />,
+  Kbd: ({ props }) => <Kbd {...props} />,
+  GradientBackground: ({ props, children }) => <GradientBackground {...props}>{children}</GradientBackground>,
+  GridPattern: ({ props }) => <GridPattern {...props} />,
+  NoiseOverlay: ({ props }) => <NoiseOverlay {...props} />,
+  GlowEffect: ({ props }) => <GlowEffect {...props} />,
+  CountUp: ({ props }) => <CountUp {...props} />,
+  FadeIn: ({ props, children }) => <FadeIn {...props}>{children}</FadeIn>,
+} as const;
 
-// TODO: import components from @olwiba/ui as they become available
-// import { Button, Card, ... } from '@olwiba/ui';
-
-export const defaultRegistry: BlockRegistry = {
-  // Entries added here as @olwiba/ui blocks are built and exported
-};
+export const { registry } = defineRegistry(catalog, {
+  components: olwibaComponents,
+  actions: {
+    navigate: () => {},
+  },
+});

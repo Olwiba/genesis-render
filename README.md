@@ -1,76 +1,102 @@
 # @genesis/render
 
-> JSON-to-UI rendering engine for declarative page definitions.
-
-## What This Is
-
-Define pages as JSON schemas, render them as React components. Built for Genesis template projects.
-
-## Package
-
-```
-npm: @genesis/render
-registry: private (Verdaccio)
-peer: @olwiba/ui
-```
+> olwibaUI adapter for `@json-render/react` - JSON-to-UI rendering for Genesis projects.
 
 ## Installation
 
 ```bash
-# Configure Verdaccio in bunfig.toml first
 bun add @genesis/render @olwiba/ui @olwiba/cn
 ```
 
-## Components
-
-- `GenesisPage` — Renders a full page from schema
-- `GenesisSection` — Renders a page section
-- `GenesisBlock` — Renders individual blocks
-
-## Types
-
-- `PageSchema` — Page definition
-- `SectionSchema` — Section definition
-- `BlockSchema` — Block definition
-- `DataBinding` — Static/query/context data sources
-- `ConditionalRender` — Show/hide logic
-
-## Usage
+## Quick start
 
 ```tsx
-import { GenesisPage } from "@genesis/render";
+import { GenesisPage } from '@genesis/render';
 
-const pageSchema = {
-  title: "Dashboard",
-  sections: [
-    {
-      id: "header",
-      blocks: [
-        { type: "PageHeader", props: { title: "Dashboard" } }
-      ]
-    }
-  ]
+const spec = {
+  root: 'header-1',
+  elements: {
+    'header-1': {
+      type: 'PageHeader',
+      props: { title: 'Dashboard', description: 'Welcome back' },
+      children: ['card-1'],
+    },
+    'card-1': {
+      type: 'GlassCard',
+      props: { blur: 'md' },
+      children: ['stat-1'],
+    },
+    'stat-1': {
+      type: 'StatCard',
+      props: { label: 'Users', value: '1,234', delta: '+12%', trend: 'up' },
+      children: [],
+    },
+  },
 };
 
 function DashboardPage() {
-  return <GenesisPage schema={pageSchema} />;
+  return (
+    <GenesisPage
+      spec={spec}
+      onAction={{ navigate: (params) => router.navigate(params.to) }}
+    />
+  );
 }
 ```
 
-## Data Binding
+## Advanced usage
+
+### Cherry-pick components
 
 ```tsx
-// Static data
-{ data: { type: "static", value: { name: "John" } } }
+import { defineCatalog, defineRegistry, Renderer, StateProvider } from '@genesis/render';
+import { olwibaComponentDefinitions, olwibaComponents } from '@genesis/render';
 
-// tRPC query
-{ data: { type: "query", procedure: "user.getProfile" } }
-
-// Context
-{ data: { type: "context", path: "user.name" } }
+// Use the full catalog + registry, or pick specific components
+const { registry } = defineRegistry(catalog, {
+  components: {
+    PageHeader: olwibaComponents.PageHeader,
+    StatCard: olwibaComponents.StatCard,
+  },
+  actions: {
+    navigate: (params) => { /* custom navigation */ },
+  },
+});
 ```
+
+### AI prompt generation
+
+```tsx
+import { catalog } from '@genesis/render';
+
+// Generate a system prompt describing all available olwibaUI components.
+// Includes Zod-validated prop schemas and descriptions for each component.
+const systemPrompt = catalog.prompt();
+```
+
+## Available components
+
+| Component | Description |
+|-----------|-------------|
+| PageHeader | Page title with optional description |
+| Spinner | Loading spinner |
+| GlassCard | Frosted glass card container |
+| FeatureCard | Feature highlight card |
+| StatCard | Stat metric with trend indicator |
+| TestimonialCard | Testimonial quote with attribution |
+| PricingCard | Pricing tier with feature list |
+| ImageCard | Image card with optional overlay |
+| EmptyState | Empty state placeholder |
+| Kbd | Keyboard shortcut display |
+| GradientBackground | Decorative gradient background |
+| GridPattern | Decorative grid/dot pattern |
+| NoiseOverlay | Noise texture overlay |
+| GlowEffect | Ambient glow effect |
+| CountUp | Animated number counter |
+| FadeIn | Fade-in animation wrapper |
 
 ## Related
 
-- [@olwiba/ui](https://github.com/Olwiba/olwibaUI) — Component library
-- [genesis](https://github.com/Olwiba/genesis) — Full template
+- [@json-render](https://json-render.dev) - The Generative UI framework (Vercel Labs)
+- [@olwiba/ui](https://github.com/Olwiba/olwibaUI) - Component library
+- [genesis](https://github.com/Olwiba/genesis) - Full template
