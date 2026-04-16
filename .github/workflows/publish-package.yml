@@ -1,6 +1,9 @@
 name: Publish Package
 
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -46,6 +49,15 @@ jobs:
           echo "PKG_NAME=$(jq -r .name package.json)" >> "$GITHUB_ENV"
           echo "PKG_VERSION=$(jq -r .version package.json)" >> "$GITHUB_ENV"
 
+      - name: Verify tag matches package version
+        if: github.event_name == 'push'
+        run: |
+          EXPECTED_TAG="v${PKG_VERSION}"
+          if [ "${GITHUB_REF_NAME}" != "$EXPECTED_TAG" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match package version ${PKG_VERSION}"
+            exit 1
+          fi
+
       - name: Pack
         run: |
           mkdir -p artifacts
@@ -72,3 +84,59 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify Discord
+        if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "DISCORD_WEBHOOK_URL is not configured. Skipping notification."
+            exit 0
+          fi
+
+          STATUS_TEXT="succeeded"
+          COLOR=5763719
+
+          if [ "$JOB_STATUS" != "success" ]; then
+            STATUS_TEXT="failed"
+            COLOR=15548997
+          fi
+
+          VERSION="${PKG_VERSION:-unknown}"
+          REF_NAME="${GITHUB_REF_NAME:-manual}"
+          RUN_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          SHORT_SHA="$(printf '%.7s' "$GITHUB_SHA")"
+
+          jq -n \
+            --arg repo "$GITHUB_REPOSITORY" \
+            --arg workflow "$GITHUB_WORKFLOW" \
+            --arg version "$VERSION" \
+            --arg ref "$REF_NAME" \
+            --arg status "$STATUS_TEXT" \
+            --arg actor "$GITHUB_ACTOR" \
+            --arg url "$RUN_URL" \
+            --arg sha "$SHORT_SHA" \
+            --argjson color "$COLOR" \
+            '{
+              embeds: [
+                {
+                  title: ($repo + " release " + $status),
+                  color: $color,
+                  url: $url,
+                  fields: [
+                    { name: "Version", value: $version, inline: true },
+                    { name: "Ref", value: $ref, inline: true },
+                    { name: "Actor", value: $actor, inline: true },
+                    { name: "Commit", value: $sha, inline: true },
+                    { name: "Workflow", value: $workflow, inline: false }
+                  ]
+                }
+              ]
+            }' > discord-payload.json
+
+          curl -sS \
+            -H "Content-Type: application/json" \
+            -d @discord-payload.json \
+            "$DISCORD_WEBHOOK_URL"
