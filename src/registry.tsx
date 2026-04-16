@@ -15,19 +15,21 @@ import {
 } from '@olwiba/ui';
 import { catalog } from './catalog';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const olwibaComponents = {
-  PageHeader: ({ props, children }: BaseComponentProps) => <PageHeader {...props}>{children}</PageHeader>,
-  Spinner: ({ props }: BaseComponentProps) => <FullPageSpinner {...props} />,
-  GlassCard: ({ props, children }: BaseComponentProps) => <GlassCard {...props}>{children}</GlassCard>,
-  FeatureCard: ({ props }: BaseComponentProps) => <FeatureCard {...props} />,
-  StatCard: ({ props }: BaseComponentProps) => <StatCard {...props} />,
-  TestimonialCard: ({ props }: BaseComponentProps) => <TestimonialCard {...props} />,
-  PricingCard: ({ props }: BaseComponentProps) => <PricingCard {...props} />,
-  ImageCard: ({ props, children }: BaseComponentProps) => <ImageCard {...props}>{children}</ImageCard>,
-  EmptyState: ({ props }: BaseComponentProps) => <EmptyState {...props} />,
-  CountUp: ({ props }: BaseComponentProps) => <CountUp {...props} />,
-  FadeIn: ({ props, children }: BaseComponentProps) => <FadeIn {...props}>{children}</FadeIn>,
+  PageHeader: ({ props, children }: BaseComponentProps) => <PageHeader {...(props as any)}>{children}</PageHeader>,
+  Spinner: ({ props }: BaseComponentProps) => <FullPageSpinner {...(props as any)} />,
+  GlassCard: ({ props, children }: BaseComponentProps) => <GlassCard {...(props as any)}>{children}</GlassCard>,
+  FeatureCard: ({ props }: BaseComponentProps) => <FeatureCard {...(props as any)} />,
+  StatCard: ({ props }: BaseComponentProps) => <StatCard {...(props as any)} />,
+  TestimonialCard: ({ props }: BaseComponentProps) => <TestimonialCard {...(props as any)} />,
+  PricingCard: ({ props }: BaseComponentProps) => <PricingCard {...(props as any)} />,
+  ImageCard: ({ props, children }: BaseComponentProps) => <ImageCard {...(props as any)}>{children}</ImageCard>,
+  EmptyState: ({ props }: BaseComponentProps) => <EmptyState {...(props as any)} />,
+  CountUp: ({ props }: BaseComponentProps) => <CountUp {...(props as any)} />,
+  FadeIn: ({ props, children }: BaseComponentProps) => <FadeIn {...(props as any)}>{children}</FadeIn>,
 } as const;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export const { registry } = defineRegistry(catalog, {
   components: olwibaComponents,
