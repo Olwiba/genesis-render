@@ -64,7 +64,7 @@ describe('GenesisPage', () => {
     ];
 
     for (const type of expectedTypes) {
-      expect(registry).toHaveProperty(['components', type]);
+      expect(registry).toHaveProperty(type);
     }
   });
 
