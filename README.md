@@ -1,17 +1,17 @@
-# @genesis/render
+# @olwiba/genesis-render
 
 > olwibaUI adapter for `@json-render/react` - JSON-to-UI rendering for Genesis projects.
 
 ## Installation
 
 ```bash
-bun add @genesis/render @olwiba/ui @olwiba/cn
+bun add @olwiba/genesis-render @olwiba/ui @olwiba/cn
 ```
 
 ## Quick start
 
 ```tsx
-import { GenesisPage } from '@genesis/render';
+import { GenesisPage } from '@olwiba/genesis-render';
 
 const spec = {
   root: 'header-1',
@@ -49,8 +49,8 @@ function DashboardPage() {
 ### Cherry-pick components
 
 ```tsx
-import { defineCatalog, defineRegistry, Renderer, StateProvider } from '@genesis/render';
-import { olwibaComponentDefinitions, olwibaComponents } from '@genesis/render';
+import { defineCatalog, defineRegistry, Renderer, StateProvider } from '@olwiba/genesis-render';
+import { olwibaComponentDefinitions, olwibaComponents } from '@olwiba/genesis-render';
 
 // Use the full catalog + registry, or pick specific components
 const { registry } = defineRegistry(catalog, {
@@ -67,7 +67,7 @@ const { registry } = defineRegistry(catalog, {
 ### AI prompt generation
 
 ```tsx
-import { catalog } from '@genesis/render';
+import { catalog } from '@olwiba/genesis-render';
 
 // Generate a system prompt describing all available olwibaUI components.
 // Includes Zod-validated prop schemas and descriptions for each component.

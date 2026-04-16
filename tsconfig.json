@@ -17,8 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@genesis/render": ["./src/index.ts"],
-      "@genesis/render/*": ["./src/*"],
+      "@olwiba/genesis-render": ["./src/index.ts"],
+      "@olwiba/genesis-render/*": ["./src/*"],
       "@/*": ["./src/*"],
       "~/*": ["./site/*"],
       "fumadocs-mdx:collections/*": [".source/*"]
