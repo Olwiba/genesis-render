@@ -3,7 +3,8 @@ import type { Catalog } from '@json-render/core';
 import { schema } from '@json-render/react/schema';
 import { z } from 'zod';
 
-export const olwibaComponentDefinitions = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const olwibaComponentDefinitions: Record<string, any> = {
   PageHeader: {
     props: z.object({
       title: z.string(),
@@ -117,7 +118,7 @@ export const olwibaComponentDefinitions = {
     description: 'Fade-in animation wrapper',
     slots: ['default'],
   },
-} as const;
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const catalog: Catalog = defineCatalog(schema, {
