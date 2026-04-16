@@ -54,11 +54,6 @@ describe('GenesisPage', () => {
       'PricingCard',
       'ImageCard',
       'EmptyState',
-      'Kbd',
-      'GradientBackground',
-      'GridPattern',
-      'NoiseOverlay',
-      'GlowEffect',
       'CountUp',
       'FadeIn',
     ];

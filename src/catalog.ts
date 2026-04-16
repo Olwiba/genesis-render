@@ -93,47 +93,6 @@ export const olwibaComponentDefinitions = {
     }),
     description: 'Empty state placeholder with title and description',
   },
-  Kbd: {
-    props: z.object({
-      keys: z.union([z.string(), z.array(z.string())]),
-      className: z.string().optional(),
-    }),
-    description: 'Keyboard shortcut display',
-  },
-  GradientBackground: {
-    props: z.object({
-      variant: z.enum(['mesh', 'radial', 'aurora']).optional(),
-      animated: z.boolean().optional(),
-      className: z.string().optional(),
-    }),
-    description: 'Decorative gradient background layer',
-    slots: ['default'],
-  },
-  GridPattern: {
-    props: z.object({
-      variant: z.enum(['dots', 'lines', 'cross']).optional(),
-      size: z.number().optional(),
-      className: z.string().optional(),
-    }),
-    description: 'Decorative grid/dot pattern overlay',
-  },
-  NoiseOverlay: {
-    props: z.object({
-      opacity: z.number().optional(),
-      className: z.string().optional(),
-    }),
-    description: 'Subtle noise texture overlay',
-  },
-  GlowEffect: {
-    props: z.object({
-      size: z.number().optional(),
-      color: z.string().optional(),
-      followCursor: z.boolean().optional(),
-      blur: z.enum(['sm', 'md', 'lg', 'xl']).optional(),
-      className: z.string().optional(),
-    }),
-    description: 'Ambient glow effect',
-  },
   CountUp: {
     props: z.object({
       from: z.number().optional(),
