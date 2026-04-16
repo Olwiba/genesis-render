@@ -40,9 +40,9 @@
     "zod": ">=3.0.0"
   },
   "devDependencies": {
-    "@olwiba/cn": "^0.1.2",
-    "@olwiba/docs": "^0.1.5",
-    "@olwiba/ui": "^0.0.3",
+    "@olwiba/cn": "0.1.12",
+    "@olwiba/docs": "0.1.13",
+    "@olwiba/ui": "0.0.20",
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",

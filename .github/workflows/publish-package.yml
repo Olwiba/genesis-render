@@ -36,7 +36,7 @@ jobs:
           echo '"@olwiba" = { url = "https://npm.pkg.github.com/", token = "${{ secrets.PACKAGES_TOKEN }}" }' >> bunfig.toml
 
       - name: Install
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Test
         run: bun run test
