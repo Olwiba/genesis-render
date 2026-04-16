@@ -1,4 +1,5 @@
 import { defineCatalog } from '@json-render/core';
+import type { Catalog } from '@json-render/core';
 import { schema } from '@json-render/react/schema';
 import { z } from 'zod';
 
@@ -159,9 +160,10 @@ export const olwibaComponentDefinitions = {
   },
 } as const;
 
-export const catalog = defineCatalog(schema, {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const catalog: Catalog = defineCatalog(schema, {
   components: olwibaComponentDefinitions,
   actions: {
     navigate: { description: 'Navigate to a route' },
   },
-});
+}) as unknown as Catalog;
