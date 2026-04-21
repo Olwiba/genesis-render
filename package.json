@@ -42,6 +42,7 @@
   "devDependencies": {
     "@olwiba/cn": "0.1.12",
     "@olwiba/docs": "0.1.13",
+    "@olwiba/dx": "0.0.2",
     "@olwiba/ui": "0.0.20",
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/react": "^16.0.0",
