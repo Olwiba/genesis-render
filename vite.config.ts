@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from 'fumadocs-mdx/vite';
 import { resolve } from 'path';
 import { createDevBannerPlugin } from '@olwiba/dx';
+import { projectBanner } from './site/project.config';
 
 export default defineConfig({
   server: {
@@ -17,12 +18,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    createDevBannerPlugin({
-      segments: [
-        { text: 'genesis' },
-        { text: 'render', colorHex: '#6366f1' },
-      ],
-    }),
+    createDevBannerPlugin(projectBanner),
     mdx(await import('./source.config')),
     tailwindcss(),
     tsConfigPaths({
