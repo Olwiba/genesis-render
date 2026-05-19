@@ -3,9 +3,9 @@ title: Getting Started
 description: JSON-to-UI mapping engine for @olwiba/ui components
 ---
 
-## What is @olwiba/genesis-render?
+## What is genesis-render?
 
-A lightweight mapping layer that takes a JSON block spec and renders it using `@olwiba/ui` components. Designed to enable AI-generated pages in Genesis projects.
+A lightweight adapter layer that takes a JSON spec and renders it using `@olwiba/ui` components. Built on [`@json-render`](https://json-render.dev). Designed to power AI-generated pages in Genesis projects.
 
 ## Installation
 
@@ -13,17 +13,38 @@ A lightweight mapping layer that takes a JSON block spec and renders it using `@
 bun add @olwiba/genesis-render
 ```
 
+Peer dependencies:
+
+```bash
+bun add @olwiba/cn @olwiba/ui react react-dom zod
+```
+
 ## Basic Usage
 
 ```tsx
 import { GenesisPage } from '@olwiba/genesis-render';
-import spec from './spec.json';
+
+const spec = {
+  root: 'header-1',
+  elements: {
+    'header-1': {
+      type: 'PageHeader',
+      props: { title: 'Dashboard', description: 'Welcome back' },
+      children: ['stat-1'],
+    },
+    'stat-1': {
+      type: 'StatCard',
+      props: { label: 'Users', value: '1,234', delta: '+12%', trend: 'up' },
+      children: [],
+    },
+  },
+};
 
 function MyPage() {
   return (
     <GenesisPage
       spec={spec}
-      onAction={(name, params) => console.log(name, params)}
+      onAction={{ navigate: (params) => router.navigate(params.to) }}
     />
   );
 }
@@ -31,20 +52,58 @@ function MyPage() {
 
 ## Spec Format
 
+A spec is a flat element map with a root pointer:
+
 ```json
 {
-  "type": "Stack",
-  "props": { "direction": "vertical", "gap": "md" },
-  "children": [
-    {
-      "type": "Heading",
-      "props": { "text": "Hello", "level": "h1" }
+  "root": "element-id",
+  "elements": {
+    "element-id": {
+      "type": "BlockName",
+      "props": { "title": "Hello" },
+      "children": ["child-id"]
     },
-    {
-      "type": "Button",
-      "props": { "label": "Get started" },
-      "on": { "press": { "navigate": "/dashboard" } }
+    "child-id": {
+      "type": "StatCard",
+      "props": { "label": "Users", "value": "1,234" },
+      "children": []
     }
-  ]
+  }
 }
+```
+
+## GenesisPage Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `spec` | `object` | The JSON spec to render |
+| `onAction` | `Record<string, (params?) => void>` | Action handlers (e.g. navigate) |
+| `registry` | `Registry` | Optional custom registry — defaults to full olwiba registry |
+| `initialState` | `Record<string, unknown>` | Optional initial state |
+
+## Advanced: Custom Registry
+
+```tsx
+import { defineCatalog, defineRegistry, Renderer, StateProvider } from '@olwiba/genesis-render';
+import { olwibaComponentDefinitions, olwibaComponents } from '@olwiba/genesis-render';
+
+const { registry } = defineRegistry(catalog, {
+  components: {
+    PageHeader: olwibaComponents.PageHeader,
+    StatCard: olwibaComponents.StatCard,
+  },
+  actions: {
+    navigate: (params) => router.navigate(params.to),
+  },
+});
+```
+
+## Advanced: AI Prompt Generation
+
+```tsx
+import { catalog } from '@olwiba/genesis-render';
+
+// Generates a system prompt describing all registered components,
+// their Zod-validated prop schemas, and descriptions.
+const systemPrompt = catalog.prompt();
 ```

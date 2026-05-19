@@ -3,21 +3,152 @@ title: Blocks
 description: Supported block types and their props
 ---
 
-Blocks are the building blocks of a page spec. Each block maps to an `@olwiba/ui` component.
-
-As `@olwiba/ui` grows, new blocks are registered here. Each block entry below documents its `type` name, available props, and events.
+Blocks map to `@olwiba/ui` components. Each block has a `type` name, typed `props`, and optional `children` slots.
 
 ## Using a Block
 
 ```json
 {
-  "type": "BlockName",
-  "props": { ... },
-  "children": [...],
-  "on": { "eventName": { "handler": "myAction" } }
+  "root": "my-block",
+  "elements": {
+    "my-block": {
+      "type": "BlockName",
+      "props": { "key": "value" },
+      "children": []
+    }
+  }
 }
 ```
 
 ## Registered Blocks
 
-The default registry is currently being built alongside `@olwiba/ui`. Check back as new blocks are added.
+### PageHeader
+
+Page title with optional description. Accepts children.
+
+| Prop | Type | Required |
+|------|------|----------|
+| `title` | `string` | Yes |
+| `description` | `string` | No |
+| `className` | `string` | No |
+
+### Spinner
+
+Loading spinner.
+
+| Prop | Type | Values |
+|------|------|--------|
+| `size` | `enum` | `sm` `md` `lg` |
+| `className` | `string` | — |
+
+### GlassCard
+
+Frosted glass card container. Accepts children.
+
+| Prop | Type | Values |
+|------|------|--------|
+| `blur` | `enum` | `sm` `md` `lg` |
+| `className` | `string` | — |
+
+### FeatureCard
+
+Feature highlight card.
+
+| Prop | Type | Required |
+|------|------|----------|
+| `title` | `string` | Yes |
+| `description` | `string` | Yes |
+| `href` | `string` | No |
+| `className` | `string` | No |
+
+### StatCard
+
+Stat metric card with optional trend indicator.
+
+| Prop | Type | Required |
+|------|------|----------|
+| `value` | `string` | Yes |
+| `label` | `string` | Yes |
+| `delta` | `string` | No |
+| `trend` | `up \| down \| neutral` | No |
+| `description` | `string` | No |
+| `className` | `string` | No |
+
+### TestimonialCard
+
+Testimonial quote with author attribution.
+
+| Prop | Type | Required |
+|------|------|----------|
+| `quote` | `string` | Yes |
+| `name` | `string` | Yes |
+| `role` | `string` | Yes |
+| `company` | `string` | No |
+| `avatar` | `string` | No |
+| `initials` | `string` | No |
+| `className` | `string` | No |
+
+### PricingCard
+
+Pricing tier with feature list and CTA.
+
+| Prop | Type | Required |
+|------|------|----------|
+| `name` | `string` | Yes |
+| `price` | `string` | Yes |
+| `period` | `string` | No |
+| `description` | `string` | Yes |
+| `features` | `{ label: string, included: boolean }[]` | Yes |
+| `cta` | `string` | Yes |
+| `highlighted` | `boolean` | No |
+| `badge` | `string` | No |
+| `className` | `string` | No |
+
+### ImageCard
+
+Image card with optional overlay. Accepts children.
+
+| Prop | Type | Values |
+|------|------|--------|
+| `src` | `string` | — |
+| `alt` | `string` | — |
+| `overlay` | `enum` | `none` `subtle` `strong` |
+| `aspectRatio` | `enum` | `video` `square` `portrait` `auto` |
+| `className` | `string` | — |
+
+### EmptyState
+
+Empty state placeholder.
+
+| Prop | Type | Required |
+|------|------|----------|
+| `title` | `string` | Yes |
+| `description` | `string` | No |
+| `className` | `string` | No |
+
+### CountUp
+
+Animated number counter.
+
+| Prop | Type | Required |
+|------|------|----------|
+| `to` | `number` | Yes |
+| `from` | `number` | No |
+| `duration` | `number` | No |
+| `decimals` | `number` | No |
+| `prefix` | `string` | No |
+| `suffix` | `string` | No |
+| `once` | `boolean` | No |
+| `className` | `string` | No |
+
+### FadeIn
+
+Fade-in animation wrapper. Accepts children.
+
+| Prop | Type | Values |
+|------|------|--------|
+| `direction` | `enum` | `up` `down` `left` `right` `none` |
+| `delay` | `number` | — |
+| `duration` | `number` | — |
+| `once` | `boolean` | — |
+| `className` | `string` | — |
