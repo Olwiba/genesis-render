@@ -30,20 +30,18 @@
   },
   "dependencies": {
     "@json-render/core": "^0.16.0",
-    "@json-render/react": "^0.16.0"
+    "@json-render/react": "^0.16.0",
+    "@olwiba/cn": "^0.1.15",
+    "@olwiba/docs": "^0.1.25",
+    "@olwiba/ui": "^0.0.28"
   },
   "peerDependencies": {
-    "@olwiba/cn": ">=0.1.2",
-    "@olwiba/ui": ">=0.0.3",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
     "zod": ">=3.0.0"
   },
   "devDependencies": {
-    "@olwiba/cn": "0.1.12",
-    "@olwiba/docs": "0.1.17",
-    "@olwiba/dx": "0.0.2",
-    "@olwiba/ui": "0.0.25",
+    "@olwiba/dx": "^0.0.10",
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
