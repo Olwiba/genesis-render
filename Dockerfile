@@ -3,16 +3,16 @@ WORKDIR /app
 
 # Install dependencies
 FROM base AS deps
-ARG PACKAGES_TOKEN
 COPY package.json bun.lock* ./
-RUN test -n "$PACKAGES_TOKEN" || (echo "PACKAGES_TOKEN is required for private package install" && exit 1)
-RUN printf "@olwiba:registry=https://npm.pkg.github.com\n@genesis:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n" "$PACKAGES_TOKEN" > .npmrc && \
-    bun install --frozen-lockfile
+# All @olwiba/* packages are on public npmjs - no auth needed.
+# bunfig.toml (with the supply-chain cooldown) is intentionally NOT copied
+# into this stage so lockfile-pinned versions install cleanly even if a
+# pinned version was published in the cooldown window.
+RUN bun install --frozen-lockfile
 
 # Build
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/.npmrc ./.npmrc
 COPY . .
 RUN bun run web:build
 
