@@ -29,8 +29,8 @@
     "types:check": "fumadocs-mdx && tsc --noEmit"
   },
   "dependencies": {
-    "@json-render/core": "^0.16.0",
-    "@json-render/react": "^0.16.0",
+    "@json-render/core": "^0.19.0",
+    "@json-render/react": "^0.19.0",
     "@olwiba/cn": "^0.1.15",
     "@olwiba/docs": "^0.1.25",
     "@olwiba/ui": "^0.0.28"
