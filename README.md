@@ -1,6 +1,8 @@
 # @olwiba/genesis-render
 
-> olwibaUI adapter for `@json-render/react` — JSON-to-UI rendering for Genesis projects.
+> olwibaUI adapter for `@json-render/react` - JSON-to-UI rendering for Genesis projects.
+
+**[Docs](https://renderer.genesis.olwiba.com)**
 
 ## Installation
 
@@ -62,29 +64,13 @@ const { registry } = defineRegistry(catalog, {
 ```tsx
 import { catalog } from '@olwiba/genesis-render';
 
-// Generate a system prompt describing all registered components,
+// Generates a system prompt describing all registered components,
 // their Zod-validated prop schemas, and descriptions.
 const systemPrompt = catalog.prompt();
 ```
 
-## Available blocks
-
-| Block | Description |
-|-------|-------------|
-| `PageHeader` | Page title with optional description |
-| `Spinner` | Loading spinner |
-| `GlassCard` | Frosted glass card container |
-| `FeatureCard` | Feature highlight card |
-| `StatCard` | Stat metric with trend indicator |
-| `TestimonialCard` | Testimonial quote with attribution |
-| `PricingCard` | Pricing tier with feature list |
-| `ImageCard` | Image card with optional overlay |
-| `EmptyState` | Empty state placeholder |
-| `CountUp` | Animated number counter |
-| `FadeIn` | Fade-in animation wrapper |
-
 ## Related
 
-- [@json-render](https://json-render.dev) — Generative UI framework
-- [@olwiba/ui](https://github.com/Olwiba/olwibaUI) — Component library
-- [@olwiba/cn](https://github.com/Olwiba/olwibaCN) — Component primitives
+- [@json-render](https://json-render.dev) - Generative UI framework
+- [@olwiba/ui](https://github.com/Olwiba/olwibaUI) - Component library
+- [@olwiba/cn](https://github.com/Olwiba/olwibaCN) - Component primitives
