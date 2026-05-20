@@ -14,6 +14,7 @@ dist/
 # Generated
 .source/
 .tanstack/
+site/routeTree.gen.ts
 
 # IDE
 .vscode/
@@ -23,9 +24,19 @@ dist/
 .DS_Store
 Thumbs.db
 
+# Windows crash dumps
+*.stackdump
+
 # Logs
 *.log
 
 # Cache
 .cache/
 *.tsbuildinfo
+
+# Release artifacts
+artifacts/
+*.tgz
+
+# Local npm config
+.npmrc

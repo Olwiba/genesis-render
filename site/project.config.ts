@@ -15,12 +15,12 @@ export const projectConfig = {
   id: "genesis-render",
   label: "genesis-render",
   brandAccent: {
-    hex: "#a855f7",
-    lightOklch: "oklch(0.546 0.245 293)",
-    darkOklch: "oklch(0.623 0.214 291)",
+    hex: "#10b981",
+    lightOklch: "oklch(0.596 0.145 163.225)",
+    darkOklch: "oklch(0.765 0.177 163.223)",
   },
   theme: {
-    initialDocsTheme: "purple",
+    initialDocsTheme: "emerald",
   },
 } as const satisfies ProjectThemeConfig
 
@@ -31,7 +31,7 @@ export const projectThemeStyleCss = `:root {
 
 export const projectBanner = {
   segments: [
-    { text: "genesis" },
-    { text: "render", colorHex: projectConfig.brandAccent.hex },
+    { text: "genesis", colorHex: projectConfig.brandAccent.hex },
+    { text: "render" },
   ],
 }

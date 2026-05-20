@@ -1,8 +1,35 @@
-# @olwiba/genesis-render
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="./public/genesis-render--light.gif" />
+    <source media="(prefers-color-scheme: dark)" srcset="./public/genesis-render.gif" />
+    <img src="./public/genesis-render.gif" alt="genesis-render" style="width: 100%;" />
+  </picture>
+</p>
 
-> olwibaUI adapter for `@json-render/react` - JSON-to-UI rendering for Genesis projects.
+<p align="center">
+  <strong>JSON-to-UI rendering for Genesis projects.</strong>
+</p>
 
-**[Docs](https://renderer.genesis.olwiba.com)**
+<p align="center">
+  <a href="https://renderer.genesis.olwiba.com">Documentation</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Olwiba/genesis-render/issues/new?template=bug_report.md">🪲 Report a bug</a> ·
+  <a href="https://github.com/Olwiba/genesis-render/issues/new?template=feature_request.md">✨ Feature request</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sponsors/Olwiba"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=22c55e" alt="Sponsor" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/Olwiba/genesis-render?label=license&logo=github" alt="License" /></a>
+  <a href="https://github.com/Olwiba/genesis-render/issues"><img src="https://img.shields.io/github/issues/Olwiba/genesis-render" alt="Issues" /></a>
+</p>
+
+## What This Is
+
+`@olwiba/genesis-render` is the `@olwiba/ui` adapter for [`@json-render/react`](https://json-render.dev).
+
+It lets you describe UI declaratively as a JSON spec and renders it using the full Olwiba component library. Useful for AI-generated pages, dynamic dashboard layouts, or any surface where structure comes from data rather than code.
 
 ## Installation
 
@@ -10,9 +37,7 @@
 bun add @olwiba/genesis-render
 ```
 
-Peer dependencies: `@olwiba/cn @olwiba/ui react react-dom zod`
-
-## Quick start
+Peer dependencies: `@olwiba/cn`, `@olwiba/ui`, `react`, `react-dom`, `zod`
 
 ```tsx
 import { GenesisPage } from '@olwiba/genesis-render';
@@ -37,40 +62,37 @@ function DashboardPage() {
   return (
     <GenesisPage
       spec={spec}
-      onAction={{ navigate: (params) => router.navigate(params.to) }}
+      onAction={{ navigate: (p) => router.navigate(p.to) }}
     />
   );
 }
 ```
 
-## Advanced: cherry-pick components
+## What's Included
 
-```tsx
-import { defineRegistry, catalog, olwibaComponents } from '@olwiba/genesis-render';
+**GenesisPage** Top-level renderer — pass a spec and action handlers, get a full page  
+**defineRegistry** Cherry-pick specific components for a lean custom renderer  
+**catalog** Full component registry with Zod-validated prop schemas  
+**AI prompting** `catalog.prompt()` generates a system prompt describing all registered components  
 
-const { registry } = defineRegistry(catalog, {
-  components: {
-    PageHeader: olwibaComponents.PageHeader,
-    StatCard: olwibaComponents.StatCard,
-  },
-  actions: {
-    navigate: (params) => router.navigate(params.to),
-  },
-});
-```
+## Ecosystem
 
-## Advanced: AI prompt generation
+- [@olwiba/ui](https://github.com/Olwiba/olwibaUI) — the component library being rendered
+- [@olwiba/cn](https://github.com/Olwiba/olwibaCN) — base UI primitives
+- [genesis](https://github.com/Olwiba/genesis) — the baseline template
 
-```tsx
-import { catalog } from '@olwiba/genesis-render';
+## Contributing
 
-// Generates a system prompt describing all registered components,
-// their Zod-validated prop schemas, and descriptions.
-const systemPrompt = catalog.prompt();
-```
+Bug reports, pull requests & feature requests are welcome.
+Open an issue first for anything beyond a small fix.
 
-## Related
+<br/>
+<br/>
 
-- [@json-render](https://json-render.dev) - Generative UI framework
-- [@olwiba/ui](https://github.com/Olwiba/olwibaUI) - Component library
-- [@olwiba/cn](https://github.com/Olwiba/olwibaCN) - Component primitives
+<p align="center">
+  Built with 💖 by <a href="https://github.com/Olwiba">Olwiba</a>
+</p>
+
+<p align="center">
+  <a href="https://buymeacoffee.com/olwiba"><img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy Me A Coffee" /></a>
+</p>
