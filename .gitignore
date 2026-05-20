@@ -13,6 +13,7 @@ dist/
 
 # Generated
 .source/
+.tanstack/
 
 # IDE
 .vscode/
