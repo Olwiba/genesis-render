@@ -118,6 +118,53 @@ export const olwibaComponentDefinitions: Record<string, any> = {
     description: 'Fade-in animation wrapper',
     slots: ['default'],
   },
+  Grid: {
+    props: z.object({
+      columns: z.union([
+        z.literal(1), z.literal(2), z.literal(3), z.literal(4),
+        z.literal(5), z.literal(6), z.literal(12),
+      ]).optional(),
+      gap: z.enum(['none', 'xs', 'sm', 'md', 'lg', 'xl']).optional(),
+      className: z.string().optional(),
+    }),
+    description: 'CSS grid container. Wrap children in GridItem to control column spans.',
+    slots: ['default'],
+  },
+  GridItem: {
+    props: z.object({
+      span: z.union([
+        z.literal(1), z.literal(2), z.literal(3), z.literal(4),
+        z.literal(5), z.literal(6), z.literal(7), z.literal(8),
+        z.literal(9), z.literal(10), z.literal(11), z.literal(12),
+      ]).optional(),
+      rowSpan: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]).optional(),
+      className: z.string().optional(),
+    }),
+    description: 'Grid cell wrapper. Controls how many columns a child block occupies.',
+    slots: ['default'],
+  },
+  Stack: {
+    props: z.object({
+      direction: z.enum(['col', 'row']).optional(),
+      gap: z.enum(['none', 'xs', 'sm', 'md', 'lg', 'xl']).optional(),
+      align: z.enum(['start', 'center', 'end', 'stretch']).optional(),
+      justify: z.enum(['start', 'center', 'end', 'between', 'around']).optional(),
+      wrap: z.boolean().optional(),
+      className: z.string().optional(),
+    }),
+    description: 'Flex container for stacking blocks vertically or horizontally.',
+    slots: ['default'],
+  },
+  Section: {
+    props: z.object({
+      title: z.string().optional(),
+      description: z.string().optional(),
+      padding: z.enum(['none', 'sm', 'md', 'lg']).optional(),
+      className: z.string().optional(),
+    }),
+    description: 'Page section wrapper with optional heading and description. Use as root container for a page region.',
+    slots: ['default'],
+  },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
